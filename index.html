@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abdel Design - Estúdio de Design Gráfico, Vídeo, Sites e Filmagem</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#FFFFFF',secondary:'#1A4D4D',beige:'#F5F0E5'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Montserrat', sans-serif;
+background-color: #FFFFFF;
+color: #333;
+scroll-behavior: smooth;
+}
+.circular-text {
+animation: rotate 20s linear infinite;
+}
+@keyframes rotate {
+from { transform: rotate(0deg); }
+to { transform: rotate(360deg); }
+}
+.dock-menu {
+transition: all 0.3s ease;
+}
+.dock-item {
+transition: all 0.3s ease;
+}
+.dock-item:hover {
+transform: scale(1.2);
+}
+.folder {
+perspective: 1000px;
+}
+.folder-content {
+transform-style: preserve-3d;
+transition: transform 0.5s ease;
+}
+.folder.open .folder-content {
+transform: rotateX(10deg);
+}
+.folder-paper {
+transition: all 0.3s ease;
+transform-origin: top center;
+}
+.folder.open .folder-paper {
+transform: translateY(0) rotateX(0);
+opacity: 1;
+}
+.folder-paper:nth-child(1) { transition-delay: 0.1s; }
+.folder-paper:nth-child(2) { transition-delay: 0.2s; }
+.folder-paper:nth-child(3) { transition-delay: 0.3s; }
+.folder-paper:nth-child(4) { transition-delay: 0.4s; }
+.folder-paper:nth-child(5) { transition-delay: 0.5s; }
+.service-card {
+transition: all 0.3s ease;
+}
+.service-card:hover {
+transform: translateY(-10px);
+}
+.profile-card {
+transition: transform 0.3s ease;
+}
+.profile-card:hover {
+transform: perspective(1000px) rotateX(5deg) rotateY(5deg);
+}
+.gallery-3d {
+perspective: 1000px;
+}
+.gallery-item {
+transition: all 0.5s ease;
+transform-style: preserve-3d;
+}
+input[type="checkbox"] {
+appearance: none;
+-webkit-appearance: none;
+width: 24px;
+height: 24px;
+border-radius: 50%;
+border: 2px solid #1A4D4D;
+outline: none;
+transition: all 0.3s ease;
+}
+input[type="checkbox"]:checked {
+background-color: #1A4D4D;
+border-color: #1A4D4D;
+}
+input[type="checkbox"]:checked::after {
+content: "✓";
+display: flex;
+justify-content: center;
+align-items: center;
+color: white;
+font-size: 14px;
+height: 100%;
+}
+.hero-section {
+background-image: url('https://readdy.ai/api/search-image?query=modern%20design%20studio%20with%20minimalist%20aesthetic%2C%20white%20and%20beige%20interior%20with%20teal%20accents%2C%20large%20typography%20on%20wall%2C%20creative%20workspace%20with%20soft%20lighting%2C%20professional%20equipment%2C%20clean%20and%20sophisticated%2C%20high-end%20design%20studio&width=1920&height=1080&seq=1&orientation=landscape');
+background-size: cover;
+background-position: center;
+}
+.text-shadow {
+text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.service-gallery {
+animation: rotateGallery 30s linear infinite;
+animation-play-state: running;
+}
+.service-gallery:hover {
+animation-play-state: paused;
+}
+@keyframes rotateGallery {
+from { transform: rotateY(0deg); }
+to { transform: rotateY(360deg); }
+}
+.circle-button {
+transition: all 0.3s ease;
+}
+.circle-button:hover {
+transform: scale(1.1);
+}
+</style>
+</head>
+<body class="min-h-screen">
+<!-- Menu de navegação estilo Dock -->
+<header class="fixed top-0 left-0 w-full z-50 bg-white bg-opacity-90 backdrop-blur-md shadow-md">
+<div class="container mx-auto px-4 py-3 flex justify-between items-center">
+<a href="#" class="text-3xl font-['Pacifico'] text-secondary">logo</a>
+<nav class="dock-menu hidden md:flex items-center space-x-8">
+<a href="#inicio" class="dock-item font-semibold text-secondary hover:text-opacity-80 transition-all">Início</a>
+<a href="#sobre" class="dock-item font-semibold text-secondary hover:text-opacity-80 transition-all">Sobre</a>
+<a href="#servicos" class="dock-item font-semibold text-secondary hover:text-opacity-80 transition-all">Serviços</a>
+<a href="#contato" class="dock-item font-semibold text-secondary hover:text-opacity-80 transition-all">Contato</a>
+</nav>
+<button id="mobile-menu-button" class="md:hidden w-10 h-10 flex items-center justify-center text-secondary">
+<i class="ri-menu-line ri-2x"></i>
+</button>
+</div>
+<!-- Menu mobile -->
+<div id="mobile-menu" class="hidden md:hidden bg-white w-full">
+<div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+<a href="#inicio" class="font-semibold text-secondary py-2 border-b border-gray-100">Início</a>
+<a href="#sobre" class="font-semibold text-secondary py-2 border-b border-gray-100">Sobre</a>
+<a href="#servicos" class="font-semibold text-secondary py-2 border-b border-gray-100">Serviços</a>
+<a href="#contato" class="font-semibold text-secondary py-2">Contato</a>
+</div>
+</div>
+</header>
+<!-- Seção Hero -->
+<section id="inicio" class="hero-section min-h-screen flex items-center justify-center pt-20 relative">
+<div class="absolute inset-0 bg-secondary bg-opacity-50"></div>
+<div class="container mx-auto px-4 z-10 flex flex-col items-center">
+<div class="circular-text w-64 h-64 md:w-80 md:h-80 relative mb-8">
+<svg viewBox="0 0 100 100" class="w-full h-full">
+<path id="curve" fill="transparent" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"/>
+<text width="100%" class="text-white font-bold">
+<textPath href="#curve">
+Abdel Design • Abdel Design • Abdel Design •
+</textPath>
+</text>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="text-5xl font-['Pacifico'] text-white">logo</span>
+</div>
+</div>
+<h1 class="text-4xl md:text-6xl font-extrabold text-white text-center mb-6 text-shadow">Transformando Ideias em Realidade</h1>
+<p class="text-xl md:text-2xl text-white text-center mb-10 max-w-2xl">Estúdio especializado em design gráfico, vídeo, sites e filmagem para elevar sua marca ao próximo nível.</p>
+<div class="flex flex-col sm:flex-row gap-4">
+<a href="#servicos" class="bg-white text-secondary font-bold py-3 px-8 rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap">Nossos Serviços</a>
+<a href="#contato" class="bg-secondary text-white font-bold py-3 px-8 rounded-button border-2 border-white hover:bg-opacity-90 transition-all whitespace-nowrap">Fale Conosco</a>
+</div>
+</div>
+</section>
+<!-- Seção Sobre -->
+<section id="sobre" class="py-20 bg-beige">
+<div class="container mx-auto px-4">
+<h2 class="text-4xl font-bold text-secondary text-center mb-16">Sobre Nós</h2>
+<div class="flex flex-col lg:flex-row items-center gap-12">
+<div class="profile-card w-full lg:w-1/2 bg-white rounded-lg shadow-xl p-8 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%20creative%20director%20in%20a%20modern%20design%20studio%2C%20african%20man%20with%20stylish%20appearance%2C%20confident%20pose%2C%20creative%20workspace%20background%2C%20high-quality%20professional%20portrait%2C%20soft%20lighting%2C%20teal%20and%20beige%20color%20accents&width=600&height=600&seq=2&orientation=squarish" alt="Abdel Design" class="w-full h-80 object-cover object-top rounded-lg mb-6">
+<h3 class="text-2xl font-bold text-secondary mb-4">Abdel Muaneshe</h3>
+<p class="text-gray-700 mb-6">Fundador e Diretor Criativo da Abdel Design, com mais de 10 anos de experiência em design gráfico, desenvolvimento web e produção audiovisual. Apaixonado por criar soluções visuais que conectam marcas aos seus públicos.</p>
+<a href="https://wa.me/+244923456789" target="_blank" class="inline-flex items-center bg-green-500 text-white font-bold py-3 px-6 rounded-button hover:bg-green-600 transition-all whitespace-nowrap">
+<i class="ri-whatsapp-fill ri-lg mr-2"></i>
+Fale no WhatsApp
+</a>
+</div>
+<div class="w-full lg:w-1/2">
+<h3 class="text-2xl font-bold text-secondary mb-6">Nossa Missão</h3>
+<p class="text-gray-700 mb-8">Na Abdel Design, nossa missão é transformar ideias em experiências visuais impactantes. Combinamos criatividade, tecnologia e estratégia para desenvolver soluções personalizadas que elevam marcas e conectam negócios aos seus clientes.</p>
+<h3 class="text-2xl font-bold text-secondary mb-6">O Que Nos Diferencia</h3>
+<ul class="space-y-4">
+<li class="flex items-start">
+<div class="w-6 h-6 flex items-center justify-center mr-3 mt-1 bg-secondary rounded-full text-white">
+<i class="ri-check-line"></i>
+</div>
+<p class="text-gray-700">Abordagem personalizada para cada projeto, entendendo as necessidades específicas de cada cliente</p>
+</li>
+<li class="flex items-start">
+<div class="w-6 h-6 flex items-center justify-center mr-3 mt-1 bg-secondary rounded-full text-white">
+<i class="ri-check-line"></i>
+</div>
+<p class="text-gray-700">Equipe multidisciplinar com expertise em design gráfico, desenvolvimento web e produção audiovisual</p>
+</li>
+<li class="flex items-start">
+<div class="w-6 h-6 flex items-center justify-center mr-3 mt-1 bg-secondary rounded-full text-white">
+<i class="ri-check-line"></i>
+</div>
+<p class="text-gray-700">Compromisso com prazos e qualidade em todos os projetos que realizamos</p>
+</li>
+<li class="flex items-start">
+<div class="w-6 h-6 flex items-center justify-center mr-3 mt-1 bg-secondary rounded-full text-white">
+<i class="ri-check-line"></i>
+</div>
+<p class="text-gray-700">Acompanhamento contínuo e suporte pós-entrega para garantir a satisfação total</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Seção Serviços -->
+<section id="servicos" class="py-20 bg-white">
+<div class="container mx-auto px-4">
+<h2 class="text-4xl font-bold text-secondary text-center mb-16">Nossos Serviços</h2>
+<div class="gallery-3d relative h-[600px] mb-16">
+<div class="service-gallery absolute inset-0 flex items-center justify-center">
+<!-- Design Gráfico -->
+<div class="service-card absolute transform -translate-x-[300px] -translate-y-[50px] w-64 bg-white rounded-lg shadow-xl overflow-hidden">
+<div class="h-40 bg-secondary flex items-center justify-center">
+<i class="ri-artboard-2-line ri-3x text-white"></i>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-secondary mb-2">Design Gráfico</h3>
+<p class="text-gray-600 mb-4">Soluções visuais para sua marca se destacar no mercado.</p>
+<button class="view-subservices w-full bg-secondary text-white font-bold py-2 px-4 rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap" data-service="design">
+Ver Subserviços
+</button>
+</div>
+</div>
+<!-- Sites -->
+<div class="service-card absolute transform translate-x-[300px] -translate-y-[50px] w-64 bg-white rounded-lg shadow-xl overflow-hidden">
+<div class="h-40 bg-secondary flex items-center justify-center">
+<i class="ri-code-line ri-3x text-white"></i>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-secondary mb-2">Sites</h3>
+<p class="text-gray-600 mb-4">Desenvolvimento web responsivo e otimizado para seus objetivos.</p>
+<button class="view-subservices w-full bg-secondary text-white font-bold py-2 px-4 rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap" data-service="sites">
+Ver Subserviços
+</button>
+</div>
+</div>
+<!-- Vídeo -->
+<div class="service-card absolute transform -translate-x-[150px] translate-y-[150px] w-64 bg-white rounded-lg shadow-xl overflow-hidden">
+<div class="h-40 bg-secondary flex items-center justify-center">
+<i class="ri-movie-line ri-3x text-white"></i>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-secondary mb-2">Vídeo</h3>
+<p class="text-gray-600 mb-4">Edição profissional para contar sua história com impacto.</p>
+<button class="view-subservices w-full bg-secondary text-white font-bold py-2 px-4 rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap" data-service="video">
+Ver Subserviços
+</button>
+</div>
+</div>
+<!-- Filmagem -->
+<div class="service-card absolute transform translate-x-[150px] translate-y-[150px] w-64 bg-white rounded-lg shadow-xl overflow-hidden">
+<div class="h-40 bg-secondary flex items-center justify-center">
+<i class="ri-camera-line ri-3x text-white"></i>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-secondary mb-2">Filmagem</h3>
+<p class="text-gray-600 mb-4">Captação de imagens de alta qualidade para seus projetos.</p>
+<button class="view-subservices w-full bg-secondary text-white font-bold py-2 px-4 rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap" data-service="filmagem">
+Ver Subserviços
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Pasta de subserviços (inicialmente oculta) -->
+<div id="subservices-folder" class="folder hidden">
+<div class="folder-content bg-beige rounded-lg shadow-2xl p-8 max-w-4xl mx-auto">
+<div class="flex justify-between items-center mb-6">
+<h3 id="folder-title" class="text-2xl font-bold text-secondary"></h3>
+<button id="close-folder" class="w-10 h-10 flex items-center justify-center text-secondary hover:text-opacity-80">
+<i class="ri-close-line ri-2x"></i>
+</button>
+</div>
+<div id="subservices-container" class="space-y-6">
+<!-- Os subserviços serão inseridos aqui dinamicamente -->
+</div>
+<div id="selected-services-container" class="mt-8 pt-6 border-t border-gray-300 hidden">
+<h4 class="text-xl font-bold text-secondary mb-4">Serviços Selecionados</h4>
+<ul id="selected-services-list" class="mb-4 space-y-2">
+<!-- Lista de serviços selecionados -->
+</ul>
+<button id="order-now" class="bg-green-500 text-white font-bold py-3 px-8 rounded-button hover:bg-green-600 transition-all whitespace-nowrap">
+<i class="ri-whatsapp-fill ri-lg mr-2"></i>
+Pedir Agora
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Seção Contato -->
+<section id="contato" class="py-20 bg-beige">
+<div class="container mx-auto px-4">
+<h2 class="text-4xl font-bold text-secondary text-center mb-16">Entre em Contato</h2>
+<div class="flex flex-col lg:flex-row gap-12">
+<div class="w-full lg:w-1/2">
+<form class="bg-white rounded-lg shadow-xl p-8">
+<div class="mb-6">
+<label for="name" class="block text-gray-700 font-medium mb-2">Nome Completo</label>
+<input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-secondary" required>
+</div>
+<div class="mb-6">
+<label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+<input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-secondary" required>
+</div>
+<div class="mb-6">
+<label for="phone" class="block text-gray-700 font-medium mb-2">Telefone</label>
+<input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-secondary" required>
+</div>
+<div class="mb-6">
+<label for="service" class="block text-gray-700 font-medium mb-2">Serviço de Interesse</label>
+<div class="relative">
+<select id="service" class="w-full px-4 py-3 border border-gray-300 rounded appearance-none focus:outline-none focus:ring-2 focus:ring-secondary pr-8">
+<option value="">Selecione um serviço</option>
+<option value="design">Design Gráfico</option>
+<option value="sites">Sites</option>
+<option value="video">Vídeo</option>
+<option value="filmagem">Filmagem</option>
+</select>
+<div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+<i class="ri-arrow-down-s-line text-gray-500"></i>
+</div>
+</div>
+</div>
+<div class="mb-6">
+<label for="message" class="block text-gray-700 font-medium mb-2">Mensagem</label>
+<textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded resize-none focus:outline-none focus:ring-2 focus:ring-secondary"></textarea>
+</div>
+<button type="submit" class="w-full bg-secondary text-white font-bold py-3 px-8 rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap">Enviar Mensagem</button>
+</form>
+</div>
+<div class="w-full lg:w-1/2">
+<div class="bg-white rounded-lg shadow-xl p-8 h-full">
+<h3 class="text-2xl font-bold text-secondary mb-6">Informações de Contato</h3>
+<div class="space-y-6">
+<div class="flex items-start">
+<div class="w-12 h-12 flex items-center justify-center mr-4 bg-secondary rounded-full text-white">
+<i class="ri-map-pin-line ri-lg"></i>
+</div>
+<div>
+<h4 class="font-bold text-gray-800 mb-1">Endereço</h4>
+<p class="text-gray-600">Rua Principal, 123, Luanda, Angola</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-12 h-12 flex items-center justify-center mr-4 bg-secondary rounded-full text-white">
+<i class="ri-phone-line ri-lg"></i>
+</div>
+<div>
+<h4 class="font-bold text-gray-800 mb-1">Telefone</h4>
+<p class="text-gray-600">+244 923 456 789</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-12 h-12 flex items-center justify-center mr-4 bg-secondary rounded-full text-white">
+<i class="ri-mail-line ri-lg"></i>
+</div>
+<div>
+<h4 class="font-bold text-gray-800 mb-1">Email</h4>
+<p class="text-gray-600">contato@abdeldesign.com</p>
+</div>
+</div>
+</div>
+<h3 class="text-2xl font-bold text-secondary mt-10 mb-6">Redes Sociais</h3>
+<div class="flex flex-wrap gap-4">
+<a href="#" class="w-12 h-12 flex items-center justify-center bg-green-500 text-white rounded-full hover:bg-green-600 transition-all">
+<i class="ri-whatsapp-line ri-lg"></i>
+</a>
+<a href="#" class="w-12 h-12 flex items-center justify-center bg-pink-500 text-white rounded-full hover:bg-pink-600 transition-all">
+<i class="ri-instagram-line ri-lg"></i>
+</a>
+<a href="#" class="w-12 h-12 flex items-center justify-center bg-black text-white rounded-full hover:bg-gray-800 transition-all">
+<i class="ri-tiktok-line ri-lg"></i>
+</a>
+<a href="#" class="w-12 h-12 flex items-center justify-center bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-all">
+<i class="ri-facebook-fill ri-lg"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Seção FAQ -->
+<section id="faq" class="py-20 bg-white">
+<div class="container mx-auto px-4">
+<h2 class="text-4xl font-bold text-secondary text-center mb-16">Perguntas Frequentes</h2>
+<div class="max-w-3xl mx-auto">
+<div class="space-y-6">
+<div class="bg-beige rounded-lg p-6">
+<button class="faq-toggle w-full flex justify-between items-center text-left">
+<h3 class="text-xl font-bold text-secondary">Qual é o prazo para entrega dos projetos?</h3>
+<i class="ri-arrow-down-s-line text-secondary transition-transform"></i>
+</button>
+<div class="faq-content hidden mt-4">
+<p class="text-gray-700">O prazo varia de acordo com a complexidade do projeto. Para design gráfico simples, geralmente entregamos em 2-3 dias úteis. Websites podem levar de 1 a 4 semanas, dependendo das funcionalidades. Projetos de vídeo e filmagem têm prazos personalizados conforme o escopo. Sempre discutimos e acordamos os prazos antes de iniciar qualquer trabalho.</p>
+</div>
+</div>
+<div class="bg-beige rounded-lg p-6">
+<button class="faq-toggle w-full flex justify-between items-center text-left">
+<h3 class="text-xl font-bold text-secondary">Como funciona o processo de pagamento?</h3>
+<i class="ri-arrow-down-s-line text-secondary transition-transform"></i>
+</button>
+<div class="faq-content hidden mt-4">
+<p class="text-gray-700">Trabalhamos com um sistema de 50% de entrada para iniciar o projeto e 50% na entrega final. Para projetos maiores, podemos estabelecer um cronograma de pagamentos por etapas. Aceitamos transferências bancárias, pagamentos via aplicativos móveis e dinheiro.</p>
+</div>
+</div>
+<div class="bg-beige rounded-lg p-6">
+<button class="faq-toggle w-full flex justify-between items-center text-left">
+<h3 class="text-xl font-bold text-secondary">Vocês oferecem revisões nos projetos?</h3>
+<i class="ri-arrow-down-s-line text-secondary transition-transform"></i>
+</button>
+<div class="faq-content hidden mt-4">
+<p class="text-gray-700">Sim, incluímos até 3 rodadas de revisões em todos os nossos projetos para garantir que o resultado final atenda completamente às suas expectativas. Revisões adicionais podem ser solicitadas com um custo adicional.</p>
+</div>
+</div>
+<div class="bg-beige rounded-lg p-6">
+<button class="faq-toggle w-full flex justify-between items-center text-left">
+<h3 class="text-xl font-bold text-secondary">Vocês trabalham com projetos fora de Luanda?</h3>
+<i class="ri-arrow-down-s-line text-secondary transition-transform"></i>
+</button>
+<div class="faq-content hidden mt-4">
+<p class="text-gray-700">Sim, atendemos clientes em todo o território angolano e também internacionalmente. Para serviços de design gráfico e desenvolvimento web, trabalhamos remotamente. Para filmagens e produções que exigem presença física, podemos organizar deslocamentos com custos adicionais.</p>
+</div>
+</div>
+<div class="bg-beige rounded-lg p-6">
+<button class="faq-toggle w-full flex justify-between items-center text-left">
+<h3 class="text-xl font-bold text-secondary">Como posso iniciar um projeto com a Abdel Design?</h3>
+<i class="ri-arrow-down-s-line text-secondary transition-transform"></i>
+</button>
+<div class="faq-content hidden mt-4">
+<p class="text-gray-700">É simples! Entre em contato conosco através do formulário no site, WhatsApp ou redes sociais. Agendaremos uma consulta inicial para entender suas necessidades, discutir ideias e elaborar uma proposta personalizada. Após a aprovação da proposta e o pagamento inicial, começamos a trabalhar no seu projeto.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Seção Blog -->
+<section id="blog" class="py-20 bg-beige">
+<div class="container mx-auto px-4">
+<h2 class="text-4xl font-bold text-secondary text-center mb-16">Blog</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<article class="bg-white rounded-lg shadow-xl overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=graphic%20design%20trends%202025%2C%20modern%20design%20elements%2C%20minimalist%20aesthetic%20with%20teal%20and%20beige%20color%20palette%2C%20professional%20design%20workspace&width=600&height=400&seq=3&orientation=landscape" alt="Tendências de Design" class="w-full h-48 object-cover object-top">
+<div class="p-6">
+<span class="text-sm text-secondary font-medium">05 Jul, 2025</span>
+<h3 class="text-xl font-bold text-secondary mt-2 mb-3">Tendências de Design Gráfico para 2025</h3>
+<p class="text-gray-600 mb-4">Descubra as principais tendências que estão moldando o design gráfico neste ano e como aplicá-las em seus projetos.</p>
+<a href="#" class="inline-flex items-center text-secondary font-bold hover:underline">
+Ler mais
+<i class="ri-arrow-right-line ml-2"></i>
+</a>
+</div>
+</article>
+<article class="bg-white rounded-lg shadow-xl overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=responsive%20website%20design%20on%20multiple%20devices%2C%20modern%20web%20development%2C%20clean%20interface%20with%20teal%20accents%2C%20professional%20web%20design%20showcase&width=600&height=400&seq=4&orientation=landscape" alt="Sites Responsivos" class="w-full h-48 object-cover object-top">
+<div class="p-6">
+<span class="text-sm text-secondary font-medium">28 Jun, 2025</span>
+<h3 class="text-xl font-bold text-secondary mt-2 mb-3">A Importância de Sites Responsivos para Negócios</h3>
+<p class="text-gray-600 mb-4">Por que ter um site adaptado para dispositivos móveis é essencial para o sucesso do seu negócio no ambiente digital atual.</p>
+<a href="#" class="inline-flex items-center text-secondary font-bold hover:underline">
+Ler mais
+<i class="ri-arrow-right-line ml-2"></i>
+</a>
+</div>
+</article>
+<article class="bg-white rounded-lg shadow-xl overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=video%20production%20equipment%2C%20professional%20filming%20setup%2C%20camera%20equipment%20with%20soft%20lighting%2C%20modern%20video%20studio%20with%20teal%20and%20beige%20color%20elements&width=600&height=400&seq=5&orientation=landscape" alt="Produção de Vídeo" class="w-full h-48 object-cover object-top">
+<div class="p-6">
+<span class="text-sm text-secondary font-medium">15 Jun, 2025</span>
+<h3 class="text-xl font-bold text-secondary mt-2 mb-3">Como Criar Vídeos Profissionais com Orçamento Limitado</h3>
+<p class="text-gray-600 mb-4">Dicas práticas para produzir conteúdo audiovisual de qualidade mesmo com recursos financeiros restritos.</p>
+<a href="#" class="inline-flex items-center text-secondary font-bold hover:underline">
+Ler mais
+<i class="ri-arrow-right-line ml-2"></i>
+</a>
+</div>
+</article>
+</div>
+<div class="text-center mt-12">
+<a href="#" class="inline-flex items-center bg-secondary text-white font-bold py-3 px-8 rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap">
+Ver Todos os Artigos
+<i class="ri-arrow-right-line ml-2"></i>
+</a>
+</div>
+</div>
+</section>
+<!-- Rodapé -->
+<footer class="bg-secondary text-white py-12">
+<div class="container mx-auto px-4">
+<div class="flex flex-col md:flex-row justify-between mb-12">
+<div class="mb-8 md:mb-0">
+<a href="#" class="text-3xl font-['Pacifico'] text-white mb-4 inline-block">logo</a>
+<p class="max-w-xs text-gray-300">Transformando ideias em experiências visuais impactantes desde 2015.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+<div>
+<h4 class="text-lg font-bold mb-4">Links Rápidos</h4>
+<ul class="space-y-2">
+<li><a href="#inicio" class="text-gray-300 hover:text-white transition-colors">Início</a></li>
+<li><a href="#sobre" class="text-gray-300 hover:text-white transition-colors">Sobre</a></li>
+<li><a href="#servicos" class="text-gray-300 hover:text-white transition-colors">Serviços</a></li>
+<li><a href="#contato" class="text-gray-300 hover:text-white transition-colors">Contato</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-bold mb-4">Serviços</h4>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Design Gráfico</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Sites</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Vídeo</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Filmagem</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-bold mb-4">Contato</h4>
+<ul class="space-y-2">
+<li class="flex items-center">
+<i class="ri-phone-line mr-2"></i>
+<span>+244 923 456 789</span>
+</li>
+<li class="flex items-center">
+<i class="ri-mail-line mr-2"></i>
+<span>contato@abdeldesign.com</span>
+</li>
+<li class="flex items-center">
+<i class="ri-map-pin-line mr-2"></i>
+<span>Luanda, Angola</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="pt-8 border-t border-gray-700 flex flex-col md:flex-row justify-between items-center">
+<div class="flex flex-col md:flex-row items-center gap-4">
+<p>&copy; 2025 Abdel Design. Todos os direitos reservados.</p>
+<div class="flex gap-4">
+<button onclick="downloadCSS()" class="text-sm text-gray-300 hover:text-white transition-colors flex items-center gap-1">
+<i class="ri-download-line"></i>
+Download CSS
+</button>
+<button onclick="downloadSitemap()" class="text-sm text-gray-300 hover:text-white transition-colors flex items-center gap-1">
+<i class="ri-file-list-line"></i>
+Download Sitemap
+</button>
+</div>
+</div>
+<div class="flex space-x-4 mt-4 md:mt-0">
+<a href="#" class="text-gray-300 hover:text-white transition-colors">
+<i class="ri-whatsapp-line ri-lg"></i>
+</a>
+<a href="#" class="text-gray-300 hover:text-white transition-colors">
+<i class="ri-instagram-line ri-lg"></i>
+</a>
+<a href="#" class="text-gray-300 hover:text-white transition-colors">
+<i class="ri-tiktok-line ri-lg"></i>
+</a>
+<a href="#" class="text-gray-300 hover:text-white transition-colors">
+<i class="ri-facebook-fill ri-lg"></i>
+</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- Scripts -->
+<script id="mobile-menu-script">
+document.addEventListener('DOMContentLoaded', function() {
+const mobileMenuButton = document.getElementById('mobile-menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+mobileMenuButton.addEventListener('click', function() {
+mobileMenu.classList.toggle('hidden');
+// Alterna o ícone do botão
+const icon = mobileMenuButton.querySelector('i');
+if (mobileMenu.classList.contains('hidden')) {
+icon.classList.remove('ri-close-line');
+icon.classList.add('ri-menu-line');
+} else {
+icon.classList.remove('ri-menu-line');
+icon.classList.add('ri-close-line');
+}
+});
+// Fecha o menu ao clicar em um link
+const mobileLinks = mobileMenu.querySelectorAll('a');
+mobileLinks.forEach(link => {
+link.addEventListener('click', function() {
+mobileMenu.classList.add('hidden');
+const icon = mobileMenuButton.querySelector('i');
+icon.classList.remove('ri-close-line');
+icon.classList.add('ri-menu-line');
+});
+});
+});
+</script>
+<script id="circular-text-script">
+document.addEventListener('DOMContentLoaded', function() {
+const circularText = document.querySelector('.circular-text');
+// Acelera a rotação ao passar o mouse
+circularText.addEventListener('mouseenter', function() {
+this.style.animationDuration = '5s';
+});
+// Retorna à velocidade normal ao remover o mouse
+circularText.addEventListener('mouseleave', function() {
+this.style.animationDuration = '20s';
+});
+});
+</script>
+<script id="faq-script">
+document.addEventListener('DOMContentLoaded', function() {
+const faqToggles = document.querySelectorAll('.faq-toggle');
+faqToggles.forEach(toggle => {
+toggle.addEventListener('click', function() {
+const content = this.nextElementSibling;
+const icon = this.querySelector('i');
+// Fecha todos os outros FAQs
+document.querySelectorAll('.faq-content').forEach(item => {
+if (item !== content && !item.classList.contains('hidden')) {
+item.classList.add('hidden');
+item.previousElementSibling.querySelector('i').style.transform = 'rotate(0deg)';
+}
+});
+// Abre/fecha o FAQ atual
+content.classList.toggle('hidden');
+if (content.classList.contains('hidden')) {
+icon.style.transform = 'rotate(0deg)';
+} else {
+icon.style.transform = 'rotate(180deg)';
+}
+});
+});
+});
+</script>
+<script id="download-script">
+function downloadCSS() {
+const styles = Array.from(document.styleSheets)
+.map(sheet => {
+try {
+return Array.from(sheet.cssRules)
+.map(rule => rule.cssText)
+.join('\n');
+} catch (e) {
+console.log('Cannot read cssRules from stylesheet');
+return '';
+}
+})
+.join('\n');
+const blob = new Blob([styles], {type: 'text/css'});
+const url = URL.createObjectURL(blob);
+const a = document.createElement('a');
+a.href = url;
+a.download = 'styles.css';
+document.body.appendChild(a);
+a.click();
+document.body.removeChild(a);
+URL.revokeObjectURL(url);
+}
+function downloadSitemap() {
+const pages = [
+{loc: 'index.html', priority: '1.0'},
+{loc: 'sobre.html', priority: '0.8'},
+{loc: 'servicos.html', priority: '0.8'},
+{loc: 'contato.html', priority: '0.8'},
+{loc: 'blog.html', priority: '0.6'},
+{loc: 'faq.html', priority: '0.6'}
+];
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${pages.map(page => `
+<url>
+<loc>https://abdeldesign.com/${page.loc}</loc>
+<lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
+<priority>${page.priority}</priority>
+</url>`).join('')}
+</urlset>`;
+const blob = new Blob([sitemap], {type: 'application/xml'});
+const url = URL.createObjectURL(blob);
+const a = document.createElement('a');
+a.href = url;
+a.download = 'sitemap.xml';
+document.body.appendChild(a);
+a.click();
+document.body.removeChild(a);
+URL.revokeObjectURL(url);
+}
+</script>
+<script id="services-script">
+document.addEventListener('DOMContentLoaded', function() {
+// Dados dos serviços
+const services = {
+design: {
+title: "Design Gráfico",
+items: [
+{ name: "Cartão de visita", price: "200kz" },
+{ name: "Flyer digital", price: "1 000kz" },
+{ name: "Impressão flyers", price: "1 500kz" },
+{ name: "Logotipo", price: "8 000kz" },
+{ name: "Identidade visual", price: "15 000kz" }
+]
+},
+sites: {
+title: "Sites",
+items: [
+{ name: "Portfólio", price: "Sob consulta" },
+{ name: "Landing Page", price: "Sob consulta" },
+{ name: "Restaurante/Delivery", price: "Sob consulta" },
+{ name: "Agência", price: "Sob consulta" },
+{ name: "Institucional", price: "Sob consulta" },
+{ name: "Loja Simples", price: "Sob consulta" }
+]
+},
+video: {
+title: "Vídeo",
+items: [
+{ name: "Edição Básica", price: "2 000kz" },
+{ name: "Edição Média", price: "5 000kz" },
+{ name: "Edição Profissional", price: "10 000kz" }
+]
+},
+filmagem: {
+title: "Filmagem",
+items: [
+{ name: "Videoclipes", price: "Sob consulta" },
+{ name: "Casamento", price: "Sob consulta" },
+{ name: "Eventos", price: "Sob consulta" },
+{ name: "Corporativa", price: "Sob consulta" },
+{ name: "Drone", price: "Sob consulta" }
+]
+}
+};
+// Variáveis para controle dos serviços selecionados
+let selectedServices = [];
+// Elementos DOM
+const viewSubservicesButtons = document.querySelectorAll('.view-subservices');
+const subservicesFolder = document.getElementById('subservices-folder');
+const folderTitle = document.getElementById('folder-title');
+const subservicesContainer = document.getElementById('subservices-container');
+const closeFolder = document.getElementById('close-folder');
+const selectedServicesContainer = document.getElementById('selected-services-container');
+const selectedServicesList = document.getElementById('selected-services-list');
+const orderNowButton = document.getElementById('order-now');
+// Função para abrir a pasta de subserviços
+function openSubservicesFolder(serviceType) {
+const service = services[serviceType];
+// Define o título da pasta
+folderTitle.textContent = service.title;
+// Limpa o container de subserviços
+subservicesContainer.innerHTML = '';
+// Adiciona os subserviços
+service.items.forEach(item => {
+const paperDiv = document.createElement('div');
+paperDiv.className = 'folder-paper bg-white rounded-lg p-6 shadow-md transform opacity-0 translate-y-4';
+const itemDiv = document.createElement('div');
+itemDiv.className = 'flex items-center justify-between';
+const leftDiv = document.createElement('div');
+leftDiv.className = 'flex items-center';
+const checkbox = document.createElement('input');
+checkbox.type = 'checkbox';
+checkbox.className = 'mr-4 cursor-pointer';
+checkbox.dataset.name = item.name;
+checkbox.dataset.price = item.price;
+checkbox.dataset.service = service.title;
+// Adiciona evento de mudança ao checkbox
+checkbox.addEventListener('change', function() {
+if (this.checked) {
+// Adiciona o serviço à lista de selecionados
+selectedServices.push({
+service: this.dataset.service,
+name: this.dataset.name,
+price: this.dataset.price
+});
+} else {
+// Remove o serviço da lista de selecionados
+selectedServices = selectedServices.filter(s =>
+!(s.service === this.dataset.service && s.name === this.dataset.name)
+);
+}
+// Atualiza a lista de serviços selecionados
+updateSelectedServicesList();
+});
+const nameDiv = document.createElement('div');
+nameDiv.innerHTML = `<h4 class="font-bold text-secondary">${item.name}</h4>`;
+leftDiv.appendChild(checkbox);
+leftDiv.appendChild(nameDiv);
+const priceDiv = document.createElement('div');
+priceDiv.className = 'text-secondary font-bold';
+priceDiv.textContent = item.price;
+itemDiv.appendChild(leftDiv);
+itemDiv.appendChild(priceDiv);
+paperDiv.appendChild(itemDiv);
+subservicesContainer.appendChild(paperDiv);
+});
+// Mostra a pasta
+subservicesFolder.classList.remove('hidden');
+subservicesFolder.classList.add('open');
+// Anima os papéis após um pequeno delay
+setTimeout(() => {
+const papers = document.querySelectorAll('.folder-paper');
+papers.forEach((paper, index) => {
+setTimeout(() => {
+paper.style.opacity = '1';
+paper.style.transform = 'translateY(0)';
+}, index * 100);
+});
+}, 300);
+}
+// Função para fechar a pasta
+function closeSubservicesFolder() {
+const papers = document.querySelectorAll('.folder-paper');
+// Anima os papéis para saída
+papers.forEach((paper, index) => {
+setTimeout(() => {
+paper.style.opacity = '0';
+paper.style.transform = 'translateY(4px)';
+}, index * 50);
+});
+// Fecha a pasta após a animação
+setTimeout(() => {
+subservicesFolder.classList.add('hidden');
+subservicesFolder.classList.remove('open');
+}, papers.length * 50 + 300);
+}
+// Função para atualizar a lista de serviços selecionados
+function updateSelectedServicesList() {
+if (selectedServices.length > 0) {
+selectedServicesContainer.classList.remove('hidden');
+// Limpa a lista
+selectedServicesList.innerHTML = '';
+// Adiciona os serviços selecionados
+selectedServices.forEach(service => {
+const li = document.createElement('li');
+li.className = 'flex justify-between items-center';
+li.innerHTML = `
+<span>${service.service} - ${service.name}</span>
+<span class="font-bold">${service.price}</span>
+`;
+selectedServicesList.appendChild(li);
+});
+} else {
+selectedServicesContainer.classList.add('hidden');
+}
+}
+// Adiciona eventos aos botões de visualização de subserviços
+viewSubservicesButtons.forEach(button => {
+button.addEventListener('click', function() {
+const serviceType = this.dataset.service;
+openSubservicesFolder(serviceType);
+});
+});
+// Adiciona evento ao botão de fechar pasta
+closeFolder.addEventListener('click', closeSubservicesFolder);
+// Adiciona evento ao botão de pedir agora
+orderNowButton.addEventListener('click', function() {
+// Cria a mensagem para o WhatsApp
+let message = "Olá, gostaria de solicitar os seguintes serviços:\n\n";
+selectedServices.forEach(service => {
+message += `- ${service.service}: ${service.name} (${service.price})\n`;
+});
+message += "\nPoderia me fornecer mais informações?";
+// Codifica a mensagem para URL
+const encodedMessage = encodeURIComponent(message);
+// Abre o WhatsApp com a mensagem
+window.open(`https://wa.me/+244923456789?text=${encodedMessage}`, '_blank');
+});
+});
+</script>
+</body>
+</html>
